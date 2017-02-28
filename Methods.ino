@@ -156,24 +156,12 @@ void rainbowFade() {
   }
 }
 
-void readingRainbowFade(int ctr, int rng, int del) {
-  for (int i = ctr + rng; i >= ctr; i--) {
-    for (int j = 0; j <= rng; j++) {
-      for (int k = 0; k < (int)(strip.numPixels() / rng); k++) {
-        strip.setPixelColor(j * (int)(strip.numPixels() / rng) + k, HSVtoRGB(colorWrap(i + j), 100, 50));
-      }
-    }
-    delay(del);
-    strip.show();
+void readingRainbowFade(int ctr, int rng, int del){
+  for(int i = ctr+rng; i >= ctr - rng; i--){
+    setAll(HSVtoRGB(colorWrap(i),100,50));
   }
-  for (int i = ctr; i <= ctr + rng; i++) {
-    for (int j = 0; j <= rng; j++) {
-      for (int k = 0; k < (int)(strip.numPixels() / rng); k++) {
-        strip.setPixelColor(j * (int)(strip.numPixels() / rng) + k, HSVtoRGB(colorWrap(i + j), 100, 50));
-      }
-    }
-    delay(del);
-    strip.show();
+  for(int i = ctr - rng; i >= ctr - rng; i++){
+    setAll(HSVtoRGB(colorWrap(i),100,50));
   }
 }
 

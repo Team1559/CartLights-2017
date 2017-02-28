@@ -2,14 +2,14 @@
 #include <Bounce2.h>
 #include <Adafruit_NeoPixel.h>
 
-#define PIN 8
+#define PIN 12
 #define SWRED 6
-#define LEDRED 11
+#define LEDRED 5
 #define SWBLUE 3
-#define LEDBLUE 12
-#define SWWHITE 4
-#define LEDWHITE 13
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
+#define LEDBLUE 2
+#define SWWHITE 9
+#define LEDWHITE 8
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(43, PIN, NEO_GRBW + NEO_KHZ800);
 Bounce redSw = Bounce();
 Bounce blueSw = Bounce();
 Bounce whiteSw = Bounce();
@@ -26,6 +26,12 @@ void setup() {
   pinMode(LEDBLUE, OUTPUT);
   pinMode(SWWHITE, INPUT_PULLUP);
   pinMode(LEDWHITE, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(10, OUTPUT);
+  digitalWrite(4, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(10, LOW);
   digitalWrite(LEDWHITE, HIGH);
   redSw.attach(SWRED);
   redSw.interval(5);
@@ -35,8 +41,8 @@ void setup() {
   whiteSw.interval(5);
   strip.begin();
   strip.show();
-  Timer1.initialize(5000);
-  Timer1.attachInterrupt(checkButts, 5000);
+  Timer1.initialize(50000);
+  Timer1.attachInterrupt(checkButts, 50000);
 }
 
 void loop() {
